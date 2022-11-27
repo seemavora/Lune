@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { StyleSheet, View, Text, SafeAreaView, ScrollView, Button, TextInput } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, ScrollView, Button, Pressable, TextInput } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import InputBox from '../components/InputBox';
@@ -18,8 +18,6 @@ export default function Login({ navigation }: RootStackScreenProps<'NotFound'>) 
         console.log(email, password)
     }
 
-    
-
     const handlePasswordInput = (e:any) => {
         setPassword(e)
     }
@@ -27,7 +25,7 @@ export default function Login({ navigation }: RootStackScreenProps<'NotFound'>) 
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
+            <ScrollView style={{height: '100%', width: '100%'}}>
                 <View style={{ padding: '10%' }}>
                     <Text style={styles.title}>Login</Text>
                     
@@ -45,12 +43,17 @@ export default function Login({ navigation }: RootStackScreenProps<'NotFound'>) 
                         isSecure = {true}
                         onChangeText={handlePasswordInput}
                         />
-                    <Button
-                        title="Login"
-                        color="pink"
-                        accessibilityLabel="Login"
-                        onPress={submit}
-                    />
+                        <Pressable
+                            style= {styles.button}
+                            accessibilityLabel="Login"
+                            onPress={submit}
+                        >
+                        <Text 
+                            style={styles.buttonText}
+                        >
+                            SUBMIT
+                        </Text>
+                    </Pressable>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -74,8 +77,16 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     input: {
-        fontSize: 20,
+        fontSize: 12,
         width: '80%',
-
+    },
+    button: {
+        alignItems: 'center',
+        borderRadius: 50,
+        backgroundColor: '#8fbeea',
+        paddingVertical: 17,
+    }, 
+    buttonText: {
+        color: 'white',
     }
 });
